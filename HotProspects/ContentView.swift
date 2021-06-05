@@ -27,8 +27,8 @@ struct ContentView: View {
             }
     }
     
-    func fetchData(from urlString: String) -> Result<String, NetworkError> {
-        .failure(.badURL)
+    func fetchData(from urlString: String, completion: (Result<String, NetworkError>) -> Void) {
+        completion(.failure(.badURL))
     }
 }
 
