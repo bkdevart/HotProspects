@@ -16,14 +16,21 @@ struct ContentView: View {
     var body: some View {
         Text("hello, world!")
             .onAppear {
-                let url = URL(string: "https://www.appple.com")!
-                URLSession.shared.dataTask(with: url) { data, response, error in
-                    if data != nil {
-                        print("We got data!")
-                    } else if let error = error {
-                        print(error.localizedDescription)
+                self.fetchData(from: "https://www.apple.com") { result in
+                    switch result {
+                    case .success(let str):
+                        print(str)
+                    case .failure(let error):
+                        switch error {
+                        case .badURL:
+                            print("Bad URL")
+                        case .requestFailed:
+                            print("Network problems")
+                        case .unknown:
+                            print("Unknown error")
+                        }
                     }
-                }.resume()
+                }
             }
     }
     
