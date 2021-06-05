@@ -7,6 +7,9 @@
 
 import SwiftUI
 
+enum NetworkError: Error {
+    case badURL, requestFailed, unknown
+}
 
 struct ContentView: View {
     
@@ -22,6 +25,10 @@ struct ContentView: View {
                     }
                 }.resume()
             }
+    }
+    
+    func fetchData(from urlString: String) -> Result<String, NetworkError> {
+        .failure(.badURL)
     }
 }
 
