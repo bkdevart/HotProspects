@@ -28,9 +28,23 @@ struct ContentView: View {
     }
     
     func fetchData(from urlString: String, completion: @escaping(Result<String, NetworkError>) -> Void) {
-        DispatchQueue.main.async {
+        guard let url = URL(string: urlString) else {
             completion(.failure(.badURL))
+            return
         }
+        
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            DispatchQueue.main.async {
+                if let data = data {
+                    let stringData = String(decoding: data, as: UTF8.self)
+                    completion(.success(stringData))
+                } else if error != nil {
+                    completion(.failure(.requestFailed))
+                } else {
+                    completion(.failure(.unknown))
+                }
+            }
+        }.resume()
     }
 }
 
