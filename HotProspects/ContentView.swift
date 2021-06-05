@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         Image("example")
+            .interpolation(.none)
             .resizable()
             .scaledToFit()
             .frame(maxHeight: .infinity)
