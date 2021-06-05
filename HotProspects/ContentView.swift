@@ -27,8 +27,10 @@ struct ContentView: View {
             }
     }
     
-    func fetchData(from urlString: String, completion: (Result<String, NetworkError>) -> Void) {
-        completion(.failure(.badURL))
+    func fetchData(from urlString: String, completion: @escaping(Result<String, NetworkError>) -> Void) {
+        DispatchQueue.main.async {
+            completion(.failure(.badURL))
+        }
     }
 }
 
