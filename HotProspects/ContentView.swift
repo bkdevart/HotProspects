@@ -5,20 +5,36 @@
 //  Created by Brandon Knox on 6/4/21.
 //
 
-import SamplePackage
 import SwiftUI
 
 struct ContentView: View {
-    let possibleNumbers = Array(1...60)
-    
-    var results: String {
-        let selected = possibleNumbers.random(7).sorted()
-        let strings = selected.map(String.init)
-        return strings.joined(separator: ", ")
-    }
     
     var body: some View {
-        Text(results)
+        TabView {
+            ProspectsView()
+                .tabItem {
+                    Image(systemName: "person.3")
+                    Text("Everyone")
+                }
+            
+            ProspectsView()
+                .tabItem {
+                    Image(systemName: "checkmark.circle")
+                    Text("Contacted")
+                }
+            
+            ProspectsView()
+                .tabItem {
+                    Image(systemName: "questionmark.diamond")
+                    Text("Uncontacted")
+                }
+            
+            MeView()
+                .tabItem {
+                    Image(systemName: "person.crop.square")
+                    Text("Me")
+                }
+        }
     }
 }
 
