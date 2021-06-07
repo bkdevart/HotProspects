@@ -11,19 +11,19 @@ struct ContentView: View {
     
     var body: some View {
         TabView {
-            ProspectsView()
+            ProspectsView(filter: .none)
                 .tabItem {
                     Image(systemName: "person.3")
                     Text("Everyone")
                 }
             
-            ProspectsView()
+            ProspectsView(filter: .contacted)
                 .tabItem {
                     Image(systemName: "checkmark.circle")
                     Text("Contacted")
                 }
             
-            ProspectsView()
+            ProspectsView(filter: .uncontacted)
                 .tabItem {
                     Image(systemName: "questionmark.diamond")
                     Text("Uncontacted")

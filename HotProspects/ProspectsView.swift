@@ -8,13 +8,33 @@
 import SwiftUI
 
 struct ProspectsView: View {
+    enum FilterType {
+        case none, contacted, uncontacted
+    }
+    
+    let filter: FilterType
+    
+    var title: String {
+        switch filter {
+        case .none:
+            return "Everyone"
+        case .contacted:
+            return "Contacted people"
+        case .uncontacted:
+            return "Uncontacted people"
+        }
+    }
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            Text("Hello, World!")
+                .navigationBarTitle(title)
+        }
     }
 }
 
 struct ProspectsView_Previews: PreviewProvider {
     static var previews: some View {
-        ProspectsView()
+        ProspectsView(filter: .none)
     }
 }
