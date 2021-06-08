@@ -14,10 +14,10 @@
 		CA035E35266B0002009D66EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA035E34266B0002009D66EF /* Assets.xcassets */; };
 		CA035E38266B0002009D66EF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA035E37266B0002009D66EF /* Preview Assets.xcassets */; };
 		CA035E3B266B0002009D66EF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA035E39266B0002009D66EF /* LaunchScreen.storyboard */; };
-		CA035E44266D3B27009D66EF /* SamplePackage in Frameworks */ = {isa = PBXBuildFile; productRef = CA035E43266D3B27009D66EF /* SamplePackage */; };
 		CA035E46266EA4EA009D66EF /* ProspectsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA035E45266EA4EA009D66EF /* ProspectsView.swift */; };
 		CA035E48266EA4EF009D66EF /* MeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA035E47266EA4EF009D66EF /* MeView.swift */; };
 		CA035E4A266EA755009D66EF /* Prospect.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA035E49266EA755009D66EF /* Prospect.swift */; };
+		CA035E4D266FF756009D66EF /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = CA035E4C266FF756009D66EF /* CodeScanner */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,7 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA035E44266D3B27009D66EF /* SamplePackage in Frameworks */,
+				CA035E4D266FF756009D66EF /* CodeScanner in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,7 +106,7 @@
 			);
 			name = HotProspects;
 			packageProductDependencies = (
-				CA035E43266D3B27009D66EF /* SamplePackage */,
+				CA035E4C266FF756009D66EF /* CodeScanner */,
 			);
 			productName = HotProspects;
 			productReference = CA035E28266B0001009D66EF /* HotProspects.app */;
@@ -136,7 +136,7 @@
 			);
 			mainGroup = CA035E1F266B0001009D66EF;
 			packageReferences = (
-				CA035E42266D3B27009D66EF /* XCRemoteSwiftPackageReference "SamplePackage" */,
+				CA035E4B266FF756009D66EF /* XCRemoteSwiftPackageReference "CodeScanner" */,
 			);
 			productRefGroup = CA035E29266B0001009D66EF /* Products */;
 			projectDirPath = "";
@@ -371,21 +371,21 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		CA035E42266D3B27009D66EF /* XCRemoteSwiftPackageReference "SamplePackage" */ = {
+		CA035E4B266FF756009D66EF /* XCRemoteSwiftPackageReference "CodeScanner" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/twostraws/SamplePackage";
+			repositoryURL = "https://github.com/twostraws/CodeScanner";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
+				minimumVersion = 1.0.7;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		CA035E43266D3B27009D66EF /* SamplePackage */ = {
+		CA035E4C266FF756009D66EF /* CodeScanner */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CA035E42266D3B27009D66EF /* XCRemoteSwiftPackageReference "SamplePackage" */;
-			productName = SamplePackage;
+			package = CA035E4B266FF756009D66EF /* XCRemoteSwiftPackageReference "CodeScanner" */;
+			productName = CodeScanner;
 		};
 /* End XCSwiftPackageProductDependency section */
 
