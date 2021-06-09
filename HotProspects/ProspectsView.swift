@@ -80,8 +80,7 @@ struct ProspectsView: View {
             let person = Prospect()
             person.name = details[0]
             person.emailAddress = details[1]
-            self.prospects.people.append(person)
-            self.prospects.save()
+            self.prospects.add(person)
         case .failure(let error):
             print("Scanning failed")
         }
