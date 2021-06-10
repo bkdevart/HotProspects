@@ -44,21 +44,30 @@ struct ProspectsView: View {
         NavigationView {
             List {
                 ForEach(filteredProspects) { prospect in
-                    VStack(alignment: .leading) {
-                        Text(prospect.name)
-                            .font(.headline)
-                        Text(prospect.emailAddress)
-                            .foregroundColor(.secondary)
-                    }
-                    .contextMenu {
-                        Button(prospect.isContacted ? "Mark Uncontacted" : "Mark Contacted") {
-                            // prospect.isContacted.toggle()
-                            self.prospects.toggle(prospect)
+                    HStack {
+                        VStack(alignment: .leading) {
+                            Text(prospect.name)
+                                .font(.headline)
+                            Text(prospect.emailAddress)
+                                .foregroundColor(.secondary)
                         }
-                        if !prospect.isContacted {
-                            Button("Remind Me") {
-                                self.addNotification(for: prospect)
+                        .contextMenu {
+                            Button(prospect.isContacted ? "Mark Uncontacted" : "Mark Contacted") {
+                                // prospect.isContacted.toggle()  // less ideal way of toggle
+                                self.prospects.toggle(prospect)
                             }
+                            if !prospect.isContacted {
+                                Button("Remind Me") {
+                                    self.addNotification(for: prospect)
+                                }
+                            }
+                        }
+                        Spacer()
+                        // Add an icon to the “Everyone” screen showing whether a prospect was contacted or not.
+                        if (prospect.isContacted && filter == .none) {
+                            Image(systemName: "person.crop.circle.badge.checkmark")
+                        } else if ((!prospect.isContacted) && filter == .none) {
+                            Image(systemName: "person.crop.circle")
                         }
                     }
                 }
