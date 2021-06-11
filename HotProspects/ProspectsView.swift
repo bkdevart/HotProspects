@@ -16,6 +16,9 @@ struct ProspectsView: View {
     
     @EnvironmentObject var prospects: Prospects
     @State private var isShowingScanner = false
+    @State private var showingActionSheet = false
+    @State private var sortName = true
+    
     let filter: FilterType
     
     var title: String {
@@ -32,11 +35,29 @@ struct ProspectsView: View {
     var filteredProspects: [Prospect] {
         switch filter {
         case .none:
-            return prospects.people
+            if sortName {
+                return prospects.people.sorted()
+            } else {
+                return prospects.people.sorted { (lhs: Prospect, rhs: Prospect) -> Bool in
+                    return lhs.dateAdded > rhs.dateAdded
+                }
+            }
         case .contacted:
-            return prospects.people.filter { $0.isContacted }
+            if sortName {
+                return prospects.people.sorted().filter { $0.isContacted }
+            } else {
+                return prospects.people.sorted { (lhs: Prospect, rhs: Prospect) -> Bool in
+                    return lhs.dateAdded > rhs.dateAdded
+                }.filter { $0.isContacted }
+            }
         case .uncontacted:
-            return prospects.people.filter { !$0.isContacted }
+            if sortName {
+                return prospects.people.sorted().filter { !$0.isContacted }
+            } else {
+                return prospects.people.sorted { (lhs: Prospect, rhs: Prospect) -> Bool in
+                    return lhs.dateAdded > rhs.dateAdded
+                }.filter { !$0.isContacted }
+            }
         }
     }
     
@@ -60,6 +81,9 @@ struct ProspectsView: View {
                                     self.addNotification(for: prospect)
                                 }
                             }
+                            Button("Sort options") {
+                                self.showingActionSheet = true
+                            }
                         }
                         Spacer()
                         if (prospect.isContacted && filter == .none) {
@@ -68,8 +92,20 @@ struct ProspectsView: View {
                             Image(systemName: "questionmark.diamond")
                         }
                     }
+                    .actionSheet(isPresented: $showingActionSheet) {
+                        ActionSheet(title: Text("Sort options"), message: Text("Select sorting by name or most recently added"), buttons: [
+                            .default(Text("Name")) {
+                                sortName = true
+                            },
+                            .default(Text("Most recent")) {
+                                sortName = false
+                            },
+                            .cancel()
+                        ])
+                    }
                 }
             }
+            
                 .navigationBarTitle(title)
                 .navigationBarItems(trailing: Button(action: {
                     self.isShowingScanner = true
