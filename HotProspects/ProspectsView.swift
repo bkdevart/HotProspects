@@ -53,7 +53,6 @@ struct ProspectsView: View {
                         }
                         .contextMenu {
                             Button(prospect.isContacted ? "Mark Uncontacted" : "Mark Contacted") {
-                                // prospect.isContacted.toggle()  // less ideal way of toggle
                                 self.prospects.toggle(prospect)
                             }
                             if !prospect.isContacted {
@@ -63,11 +62,10 @@ struct ProspectsView: View {
                             }
                         }
                         Spacer()
-                        // Add an icon to the “Everyone” screen showing whether a prospect was contacted or not.
                         if (prospect.isContacted && filter == .none) {
-                            Image(systemName: "person.crop.circle.badge.checkmark")
+                            Image(systemName: "checkmark.circle")
                         } else if ((!prospect.isContacted) && filter == .none) {
-                            Image(systemName: "person.crop.circle")
+                            Image(systemName: "questionmark.diamond")
                         }
                     }
                 }
